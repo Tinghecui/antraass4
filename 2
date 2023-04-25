@@ -1,0 +1,73 @@
+public class MyList<T>
+{
+    private List<T> _items;
+
+    public MyList()
+    {
+        _items = new List<T>();
+    }
+
+    // 1. Add(): Adds an element to the end of the list.
+    public void Add(T element)
+    {
+        _items.Add(element);
+    }
+
+    // 2. Remove(): Removes the element at the specified index.
+    public T Remove(int index)
+    {
+        if (index < 0 || index >= _items.Count)
+        {
+            throw new ArgumentOutOfRangeException("Index is out of range.");
+        }
+
+        T item = _items[index];
+        _items.RemoveAt(index);
+        return item;
+    }
+
+    // 3. Contains(): Determines whether the list contains a specific element.
+    public bool Contains(T element)
+    {
+        return _items.Contains(element);
+    }
+
+    // 4. Clear(): Removes all elements from the list.
+    public void Clear()
+    {
+        _items.Clear();
+    }
+
+    // 5. InsertAt(): Inserts an element at the specified index.
+    public void InsertAt(T element, int index)
+    {
+        if (index < 0 || index > _items.Count)
+        {
+            throw new ArgumentOutOfRangeException("Index is out of range.");
+        }
+
+        _items.Insert(index, element);
+    }
+
+    // 6. DeleteAt(): Deletes an element at the specified index.
+    public void DeleteAt(int index)
+    {
+        if (index < 0 || index >= _items.Count)
+        {
+            throw new ArgumentOutOfRangeException("Index is out of range.");
+        }
+
+        _items.RemoveAt(index);
+    }
+
+    // 7. Find(): Finds an element at the specified index.
+    public T Find(int index)
+    {
+        if (index < 0 || index >= _items.Count)
+        {
+            throw new ArgumentOutOfRangeException("Index is out of range.");
+        }
+
+        return _items[index];
+    }
+}
