@@ -1,0 +1,53 @@
+public interface IRepository<T> where T : Entity
+{
+    void Add(T item);
+    void Remove(T item);
+    void Save();
+    IEnumerable<T> GetAll();
+    T GetById(int id);
+}
+
+public class Entity
+{
+    public int Id { get; set; }
+}
+
+public class GenericRepository<T> : IRepository<T> where T : Entity
+{
+    private List<T> _items;
+
+    public GenericRepository()
+    {
+        _items = new List<T>();
+    }
+
+    // 1. Add(): Adds an item to the repository.
+    public void Add(T item)
+    {
+        _items.Add(item);
+    }
+
+    // 2. Remove(): Removes an item from the repository.
+    public void Remove(T item)
+    {
+        _items.Remove(item);
+    }
+
+    // 3. Save(): Saves the changes to the data source. For the sake of simplicity, this method is empty.
+    public void Save()
+    {
+        // Save changes to the data source (e.g., database or in-memory data).
+    }
+
+    // 4. GetAll(): Returns all items in the repository.
+    public IEnumerable<T> GetAll()
+    {
+        return _items;
+    }
+
+    // 5. GetById(): Returns an item by its Id.
+    public T GetById(int id)
+    {
+        return _items.FirstOrDefault(item => item.Id == id);
+    }
+}
